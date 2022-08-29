@@ -5,7 +5,15 @@
 Super simple API takes in a link to a VSCO image or photo and downloads it for the client.
 
 ## How to Use
-#### POST `/fetchObject`
+
+Base URL: still a work in progress
+
+### Endpoints
+
+#### 1. GET `/`
+- pretty much a health check. should return 200 when everything is all good
+
+#### 2. POST `/fetchObject`
 - takes in json body of image/photo link
 
 Example
