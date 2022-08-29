@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup as bs
 import requests
 import time
 
+
 def scrape_photo(user_url):
     response = requests.get(user_url)
     soup = bs(response.text, 'html.parser')
@@ -17,7 +18,6 @@ def scrape_photo(user_url):
             handler.write(image_data)
 
     return 1
-
 
 
 def generate_time():
