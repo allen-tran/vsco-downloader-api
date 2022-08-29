@@ -18,7 +18,6 @@ def scrape_video(user_url):
 
         filename = generate_time()
         with open(filename, 'wb') as handler:
-            print(filename)
             handler.write(video_data)
     return 1
 
