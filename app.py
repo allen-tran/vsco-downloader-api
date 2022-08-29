@@ -1,5 +1,5 @@
 from re import L
-from flask import Flask
+from flask import Flask, Response, request, jsonify
 import json
 app = Flask(__name__)
 import photo_scrapper
@@ -7,16 +7,19 @@ import video_scrapper
 
 @app.route('/')
 def home():
-    return json.dumps({'hello': 'hello'})
+    return Response(status=200, mimetype='application/json')
 
-@app.route("/download/", methods=["GET", "POST"])
+@app.route("/fetchObject/", methods=["POST"])
 def scrape():
-    user_url = input("Please enter the url of the vsco image you would like to download: ")
-
-    if not photo_scrapper.scrape_photo(user_url):
+    user_url = request.json
+    print(user_url['link'])
+   
+    if video_scrapper.scrape_video(user_url['link']):
         return
-    
-    video_scrapper.scrape_video(user_url)
+
+    photo_scrapper.scrape_photo(user_url['link'])
+
+    return Response(status=201,mimetype='application/json')
 
 if __name__ == "__main__":
     app.run(port=7777)
