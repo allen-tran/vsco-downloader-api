@@ -14,13 +14,13 @@ def scrape_video(user_url):
         return None
 
     for vid in videos:
-        print(vid)
-        video_data = requests.get("https:" + vid['src']).content
+        request_link = "http:" + vid['src']
+        video_data = requests.get(request_link).content
 
         filename = generate_time()
         with open(filename, 'wb') as handler:
             handler.write(video_data)
-    return 1
+    return {"link": request_link}
 
 
 def generate_time():

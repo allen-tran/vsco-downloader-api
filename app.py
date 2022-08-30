@@ -1,6 +1,5 @@
 from re import L
-from flask import Flask, Response, request, jsonify
-import json
+from flask import Flask, Response, request
 import photo_scrapper
 import video_scrapper
 
@@ -17,12 +16,13 @@ def scrape():
     user_url = request.json
     print(user_url['link'])
 
-    if video_scrapper.scrape_video(user_url['link']):
+    response_link = video_scrapper.scrape_video(user_url['link'])
+    if response_link:
         return
 
-    photo_scrapper.scrape_photo(user_url['link'])
+    response_link = photo_scrapper.scrape_photo(user_url['link'])
 
-    return Response(status=201, mimetype='application/json')
+    return Response(f"{response_link}", status=200, mimetype='application/json')
 
 
 if __name__ == "__main__":
