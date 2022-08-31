@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VSCO Downloader</title>
+</head>
+
+<body>
+    <h1>Please enter the link of the VSCO image or video you would like to download</h1>
+    <form action="/fetch" method="post">
+        <input name="text">
+        <input type="submit">
+    </form>
+    <img src="{{url_for('static', filename='vsco_image.jpg')}}" align="middle" />
+</body>
+
+</html>
